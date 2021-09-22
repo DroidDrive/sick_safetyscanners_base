@@ -94,9 +94,16 @@ SickSafetyscannersBase::SickSafetyscannersBase(sick::types::ip_address_t sensor_
 
 void SickSafetyscannersBase::changeSensorSettings(const CommSettings& settings)
 {
-  CommSettings _settings  = settings;
-  _settings.host_udp_port = m_udp_client.getLocalPort();
-  createAndExecuteCommand<sick::cola2::ChangeCommSettingsCommand>(m_session, _settings);
+  std::cout << "MEH_A?\n";
+  std::cout << (int) settings.passiveOnly << std::endl;
+
+  if(!settings.passiveOnly)
+  {
+    CommSettings _settings  = settings;
+    _settings.host_udp_port = m_udp_client.getLocalPort();
+    createAndExecuteCommand<sick::cola2::ChangeCommSettingsCommand>(m_session, _settings);
+  }
+  std::cout << "MEH_B?\n";
 }
 
 void SickSafetyscannersBase::findSensor(uint16_t blink_time)

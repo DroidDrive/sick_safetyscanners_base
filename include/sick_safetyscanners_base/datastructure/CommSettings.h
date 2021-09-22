@@ -65,6 +65,7 @@ struct CommSettings
   float end_angle{0.0};
   sick::types::SensorFeatures features{sick::SensorDataFeatures::ALL};
   bool enabled{true};
+  bool passiveOnly{false};
 
   sick::types::port_t host_udp_port{0};
   sick::types::ip_address_t host_ip{boost::asio::ip::address_v4::from_string("192.168.1.100")};
